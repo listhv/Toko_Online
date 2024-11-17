@@ -90,16 +90,57 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        //
+    {   
+        $user = User::findOrFail($id);
+        return view('backend.v_user.edit',[
+            'judul'=>  'Ubah User',
+            'edit' => $user
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        //
+    { 
+            $user = User::findOrFail($id);
+            $rules = [
+                'nama' => 'required|max:255',
+                'role' => 'required',
+                'hp' => 'required|min:7|max:13',
+                'status'=> 'required',
+                'foto'=> 'image|mimes:jpeg,jpg,png,gif|file|max:2048'
+            ];
+            $message = [
+                'foto.image' => 'Format gambar gunakan file dengan ekstensi jpeg ,jpg ,png atau gif',
+                'foto.max' => 'Ukuran file gambar maksimal adalah 2048 KB',
+            ];
+            if($request->email != $user->email){
+                $rules['email'] = 'required|max:255|email:user';
+            }
+
+            $validateData = $request->validate($rules, $message);
+
+            // menggunakan imageHelper
+            if($request-> file('foto')){
+                //hapus gambar lama
+                if($user->foto){
+                    $oldImagePath = public_path('storage/img-user/'). $user->foto;
+                    if(file_exists($oldImagePath)){
+                        unlink($oldImagePath);
+                    }
+                }
+                $file = $request->file('foto');
+                $extension = $file->getClientOriginalExtension();
+                $originalFileName = date('YmdHis') .'_'. uniqid() . '.' . $extension;
+                $directory = 'storage/img-user/';
+
+                ImageHelper::uploadAndResize($file, $directory, $originalFileName, 400, 400);
+
+                $validateData['foto'] = $originalFileName;
+            }
+            $user->update($validateData);
+            return redirect()-> route('backend.user.index')->with('succes', 'Data berhasil diperbaharui');
     }
 
     /**

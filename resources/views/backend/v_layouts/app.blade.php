@@ -350,7 +350,7 @@
     <script src="{{ asset('backend/matrix-admin/assets/extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
     <script src="{{ asset('backend/matrix-admin/assets/extra-libs/multicheck/jquery.multicheck.js') }}"></script>
     <script src="{{ asset('backend/matrix-admin/assets/extra-libs/DataTables/datatables.min.js') }}"></script>
-    <script src="{{ asset('backend/plugins/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ asset('backend/plugins/sweetalert/sweetalert2.all.min.js') }}"></script>
 
 
     <script>
@@ -369,6 +369,32 @@
       })
     </script>
     @endif
+
+    <script type="text/javascript">
+      // konfirmasi delete
+      $('.show_confirm').click(function(event){
+        var form = $(this).closet("form");
+        var konfdelete = $(this).data("konf-delete");
+        event.preventDefault();
+        Swal.fire({
+          title: 'Konfirmasi Hapus Data?',
+          html: "Data yang dihapus <strong>" + konfdelete + "</strong> tidak dapat dikembalikan!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          cancelButtonText: 'Ya, dihapus',
+          cancelButtonText: 'Batal'
+        }).then((result) =>{
+          if (result.isConfirmed) {
+            Swal.fire('Terhapus!', 'Data berhasil dihapus.', 'success')
+            .then(() => {
+              form.submit();
+            });
+          }
+        });
+      });
+    </script>
 
 
   </body>
