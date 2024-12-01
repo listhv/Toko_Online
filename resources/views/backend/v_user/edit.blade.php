@@ -1,4 +1,3 @@
-
 @extends('backend.v_layouts.app')
 @section('content')
   <div class="card">
