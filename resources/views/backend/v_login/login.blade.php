@@ -7,12 +7,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="keywords" content="Toko Online" />
+  <meta name="keywords" content="KpopShop" />
   <meta name="description" content="Project WP 2 Universitas Bina Sarana Informatika" />
   <meta name="robots" content="noindex,nofollow" />
   <title>Login</title>
   <!-- Favicon icon -->
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('backend/image/icon_univ_bsi.png') }}" />
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('backend/image/icon_kpopshop.png') }}" />
   <!-- Custom CSS -->
   <link href="{{ asset('backend/matrix-admin/dist/css/style.min.css') }}" rel="stylesheet" />
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -100,7 +100,7 @@
                 <div class="form-group">
                   <div class="pt-3">
                     <button class="btn btn-info" id="to-recover" type="button">
-                      <i class="mdi mdi-lock fs-4 me-1"></i> Lost password?
+                      <i class="mdi mdi-lock fs-4 me-1"></i> Forgot password?
                     </button>
                     <button class="btn btn-success float-end text-white" type="submit">
                       Login

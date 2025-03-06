@@ -15,6 +15,7 @@
                   <th>No</th>
                   <th>Gambar</th>
                   <th>Kategori</th>
+                  <th>Status</th>
                   <th>Nama Produk</th>
                   <th>Harga</th>
                   <th>Stok</th>
@@ -25,19 +26,24 @@
                 @foreach ($index as $row)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td><img src="{{ asset('storage/img-produk/' . $row->foto) }}" width='50px' alt="Foto Produk"></td>
-                    <td>{{ $row->nama_kategori }}</td>
+                    <td><img src="{{ asset('storage/img-produk/' . $row->foto) }}" width="50px" alt="Foto Produk"></td>
+                    <td>{{ $row->kategori->nama_kategori }}</td>
                     <td>
                       @if ($row->status == 1)
-                        <span class="badge bg-succes">Tampil</span>
-                      @elseif($row->role == 0)
+                        <span class="badge bg-success">Tampil</span>
+                      @elseif($row->status == 0)
                         <span class="badge bg-danger">Tidak Tampil</span>
                       @endif
                     </td>
                     <td>{{ $row->nama_produk }}</td>
-                    <td>Rp. {{ number_format($row->harga, 0, ',', '.') }}</td>
-
+                    <td>Rp{{ number_format($row->harga, 0, ',', '.') }}</td>
+                    <td>{{ $row->stok }}</td>
                     <td>
+                      <a href="{{ route('backend.produk.show', $row->id) }}">
+                        <button type="button" class="btn btn-info btn-sm" title="Show Data">
+                          <i class="fas fa-image"> Gambar </i>
+                        </button>
+                      </a>
                       <a href="{{ route('backend.produk.edit', $row->id) }}">
                         <button type="button" class="btn btn-warning btn-sm" title="Ubah Data">
                           <i class="far fa-edit"></i> Ubah

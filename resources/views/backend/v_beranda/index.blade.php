@@ -8,7 +8,7 @@
       <h5 class="card-title">{{ $judul }}</h5>
       <div class="alert alert-success" role="alert">
         <h4 class="alert-heading">Selamat Datang, {{ Auth::user()->nama }}</h4>
-        Aplikasi Toko Online dengan hak akses yang anda miliki sebagai
+        Aplikasi Kpop Shop dengan hak akses yang anda miliki sebagai
         <b>
           @if (Auth::user()->role == 1)
           Super Admin
@@ -16,9 +16,9 @@
           Admin
           @endif
         </b>
-        ini adalah halaman utama dari aplikasi web programming, studi kasus toko online.
+        ini adalah halaman utama dari aplikasi web programming, Kpop Shop project.
       <hr>
-      <p>Kuliah....? BSI Aja !!</p>
+      <p>Belanja....? Kpop SHop Aja !!</p>
       </div>
     </div>
   </div>
